@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine?</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #FF4500;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            color: #FFFFFF;
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 30px;
+            border-radius: 15px;
+            border: 5px solid white; /* White border */
+            width: 90%;
+            max-width: 400px; /* Ensures it doesn't stretch too much */
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .button {
+            padding: 15px 30px;
+            font-size: 1.5em;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            width: 100%;
+            max-width: 250px;
+        }
+
+        .yes {
+            background-color: #28a745;
+            border: none;
+            color: white;
+        }
+
+        .yes:hover {
+            background-color: #218838;
+        }
+
+        .no {
+            background-color: #dc3545;
+            border: none;
+            color: white;
+            position: relative;
+        }
+
+        .no:hover {
+            background-color: #c82333;
+        }
+
+        .message {
+            font-size: 1.5em;
+            margin-top: 20px;
+            color: #FFFFFF;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Will you be my Valentine?</h1>
+        <button class="button yes" id="yesBtn">Yes</button>
+        <button class="button no" id="noBtn">No</button>
+        <div class="message" id="message">Yes is the only option >:(</div>
+    </div>
+
+    <script>
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const message = document.getElementById('message');
+        let hoverCount = 0;
+
+        // Handle Yes button click
+        yesBtn.addEventListener('click', function() {
+            window.location.href = "are_you_sure.html"; // Redirect to the next page
+        });
+
+        // Handle No button hover and movement
+        noBtn.addEventListener('mouseover', function() {
+            moveButton();
+            hoverCount++;
+
+            // After 5 hovers, show the message and hide "No"
+            if (hoverCount >= 5) {
+                message.style.display = 'block';
+                noBtn.style.display = 'none';
+            }
+        });
+
+        // Function to move the "No" button randomly
+        function moveButton() {
+            const maxX = window.innerWidth - noBtn.offsetWidth - 20; 
+            const maxY = window.innerHeight - noBtn.offsetHeight - 20; 
+
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+
+            noBtn.style.position = 'absolute';
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+        }
+    </script>
+</body>
+</html>

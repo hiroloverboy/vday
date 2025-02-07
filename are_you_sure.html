@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Are You Sure?</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #FF69B4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 30px;
+            border-radius: 15px;
+            border: 5px solid white; /* Added a visible border */
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            transition: opacity 1s ease;
+        }
+
+        h1 {
+            font-size: 2.5em;
+        }
+
+        .button {
+            padding: 15px 30px;
+            font-size: 1.5em;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            border: none;
+        }
+
+        .yes {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .yes:hover {
+            background-color: #218838;
+        }
+
+        .no {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .no:hover {
+            background-color: #c82333;
+        }
+
+        .fatality {
+            font-size: 6em; /* Scales better on mobile */
+            font-weight: bold;
+            position: absolute;
+            display: none;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            animation: fatalityAnimation 3s infinite ease-in-out;
+            transition: all 1s ease;
+        }
+
+        @keyframes fatalityAnimation {
+            0% { transform: translate(-50%, -50%) scale(1); color: white; }
+            50% { transform: translate(-50%, -50%) scale(1.2); color: darkred; }
+            100% { transform: translate(-50%, -50%) scale(1); color: white; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="container">
+        <h1>Are you sure? ;)</h1>
+        <button class="button yes" id="yesBtn">Yes</button>
+        <button class="button no" id="noBtn">No</button>
+    </div>
+
+    <div class="fatality" id="fatality">Fatality</div>
+
+    <script>
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const fatalityText = document.getElementById('fatality');
+        const container = document.getElementById('container');
+
+        // Handle Yes button click (redirect to "YAY THANK YOU I WAS SO DESPERATE" page)
+        yesBtn.addEventListener('click', function() {
+            window.location.href = "yay_thank_you.html"; 
+        });
+
+        // Handle No button click, turn screen red, show "Fatality" text, and make the container transparent
+        noBtn.addEventListener('click', function() {
+            document.body.style.backgroundColor = 'red'; 
+            fatalityText.style.display = 'block'; 
+            container.style.opacity = 0; 
+        });
+    </script>
+
+</body>
+</html>
